@@ -1,0 +1,10 @@
+{
+  "name": "anagha-grand-api",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "express-session": "^1.17.3"
+  }
+}
