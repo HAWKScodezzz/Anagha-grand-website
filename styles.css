@@ -95,11 +95,6 @@ button, input, select, textarea {
   padding: 80px 0;
 }
 
-@media (max-width: 768px) {
-  .section-padding {
-    padding: 50px 0;
-  }
-}
 
 .section-header {
   text-align: center;
@@ -123,11 +118,6 @@ button, input, select, textarea {
   color: var(--color-near-black);
 }
 
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
-  }
-}
 
 /* --- Buttons --- */
 .btn {
@@ -306,23 +296,25 @@ button, input, select, textarea {
 .mobile-drawer {
   display: none;
   position: fixed;
-  top: 73px;
+  top: 68px;
   left: 0;
   width: 100%;
-  background-color: var(--color-cream);
+  background: rgba(251, 247, 240, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 3px solid var(--color-terracotta);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  padding: 24px 0;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  padding: 20px 24px 28px;
   z-index: 999;
 }
 
 .mobile-drawer.active {
   display: block;
-  animation: slideDown 0.3s ease-out forwards;
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
+  from { opacity: 0; transform: translateY(-12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -331,21 +323,29 @@ button, input, select, textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .mobile-nav-links a {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--color-charcoal);
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
 }
 
-.mobile-nav-links a.active {
+.mobile-nav-links a.active,
+.mobile-nav-links a:hover {
   color: var(--color-terracotta);
+  background-color: var(--color-light-bg);
 }
 
 @media (max-width: 992px) {
-  .nav-links {
+  .nav-links, .nav-cta {
     display: none;
   }
   .hamburger-btn {
@@ -430,25 +430,6 @@ button, input, select, textarea {
   color: var(--color-mustard);
 }
 
-@media (max-width: 768px) {
-  .hero {
-    min-height: auto;
-    padding: 60px 0;
-  }
-  .hero-title {
-    font-size: 2.2rem;
-  }
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  .hero-ctas {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .trust-strip {
-    gap: 12px;
-  }
-}
 
 /* --- About & Highlights Section --- */
 .highlights-grid {
@@ -625,6 +606,17 @@ button, input, select, textarea {
   box-shadow: var(--shadow-modal);
   position: relative;
   padding: 32px;
+}
+
+/* Mobile bottom sheet drag handle indicator */
+.modal-content::before {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 4px;
+  background-color: #DDD;
+  border-radius: 999px;
+  margin: -10px auto 16px;
 }
 
 .modal-close-btn {
@@ -998,11 +990,7 @@ button, input, select, textarea {
   color: var(--color-text-muted);
 }
 
-@media (max-width: 992px) {
-  .location-wrapper {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 /* --- Floating WhatsApp Button --- */
 .whatsapp-float {
@@ -1038,6 +1026,86 @@ button, input, select, textarea {
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
+/* --- Mobile Bottom Action Dock --- */
+.mobile-bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+  z-index: 1400;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mobile-bar-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  padding: 6px 0;
+  color: var(--color-charcoal);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.mobile-bar-btn svg {
+  stroke: var(--color-charcoal);
+}
+
+.mobile-bar-btn.call-btn {
+  color: var(--color-terracotta);
+}
+
+.mobile-bar-btn.call-btn svg {
+  stroke: var(--color-terracotta);
+}
+
+.mobile-bar-btn.menu-btn {
+  color: var(--color-leaf-green);
+}
+
+.mobile-bar-btn.menu-btn svg {
+  stroke: var(--color-leaf-green);
+}
+
+.mobile-bar-btn.map-btn {
+  color: var(--color-orange);
+}
+
+.mobile-bar-btn.map-btn svg {
+  stroke: var(--color-orange);
+}
+
+.mobile-bar-btn:active {
+  transform: scale(0.94);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-bar {
+    display: flex;
+  }
+
+  .whatsapp-float {
+    bottom: calc(70px + env(safe-area-inset-bottom));
+    right: 16px;
+    width: 50px;
+    height: 50px;
+  }
+}
+
 /* --- Contact Us Form --- */
 .contact-wrapper {
   display: grid;
@@ -1045,11 +1113,7 @@ button, input, select, textarea {
   gap: 36px;
 }
 
-@media (max-width: 992px) {
-  .contact-wrapper {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 /* --- Footer --- */
 .footer {
