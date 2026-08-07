@@ -1107,3 +1107,673 @@ button, input, select, textarea {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ==========================================================================
+   MOBILE OPTIMIZATION — Comprehensive Responsive Overrides
+   ========================================================================== */
+
+/* --- Tablet (max-width: 992px) --- */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .menu-categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .modal-content {
+    max-width: 95%;
+    padding: 24px;
+  }
+}
+
+/* --- Mobile (max-width: 768px) --- */
+@media (max-width: 768px) {
+  /* Global touch improvements */
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .container {
+    width: 92%;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+  }
+
+  /* Navigation */
+  .nav-container {
+    padding: 10px 0;
+  }
+
+  .logo-badge {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .brand-subtext {
+    font-size: 0.65rem;
+  }
+
+  .mobile-drawer {
+    top: 62px;
+    padding: 20px 0;
+  }
+
+  .mobile-nav-links {
+    gap: 14px;
+  }
+
+  .mobile-nav-links a {
+    font-size: 1rem;
+    padding: 8px 16px;
+    width: 100%;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast);
+  }
+
+  .mobile-nav-links a:active {
+    background-color: var(--color-light-bg);
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: auto;
+    padding: 48px 0 56px;
+    background-position: center center;
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .hero-ctas {
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    /* Minimum 44px touch target */
+    min-height: 48px;
+  }
+
+  .trust-strip {
+    gap: 10px;
+    padding-top: 18px;
+    justify-content: center;
+  }
+
+  .trust-item {
+    font-size: 0.8rem;
+    gap: 5px;
+  }
+
+  /* Highlights / Why Choose Us */
+  .highlights-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .highlight-card {
+    padding: 24px 16px;
+  }
+
+  .highlight-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 14px;
+  }
+
+  .highlight-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .highlight-title {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+
+  .highlight-desc {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  /* Menu Cards */
+  .menu-categories-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .menu-card-img-wrap {
+    height: 150px;
+  }
+
+  .menu-card-body {
+    padding: 14px;
+  }
+
+  .menu-card-title {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .menu-card-desc {
+    font-size: 0.78rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .menu-card-cta {
+    font-size: 0.82rem;
+  }
+
+  .menu-card-badge {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+
+  /* Menu Modal */
+  .modal-backdrop {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    max-height: 90vh;
+    padding: 20px 16px 28px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    animation: slideUpModal 0.3s ease forwards;
+  }
+
+  @keyframes slideUpModal {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-close-btn {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-title {
+    font-size: 1.4rem;
+    padding-right: 40px;
+  }
+
+  .menu-items-list {
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .menu-item-row {
+    padding-bottom: 10px;
+    gap: 12px;
+  }
+
+  .menu-item-name {
+    font-size: 0.9rem;
+  }
+
+  .menu-item-desc {
+    font-size: 0.78rem;
+  }
+
+  .menu-item-price {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  /* Gallery */
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .gallery-item {
+    height: 160px;
+    border-radius: var(--radius-sm);
+  }
+
+  .gallery-hover-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Lightbox */
+  .lightbox-backdrop {
+    padding: 10px;
+  }
+
+  .lightbox-backdrop img {
+    max-height: 80vh;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Reviews */
+  .reviews-summary-bar {
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: var(--radius-md);
+    width: auto;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .reviews-score {
+    font-size: 1.5rem;
+  }
+
+  .stars-rating {
+    font-size: 1rem;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .review-card {
+    padding: 20px;
+  }
+
+  .reviewer-name {
+    font-size: 0.95rem;
+  }
+
+  .review-comment {
+    font-size: 0.88rem;
+    margin-bottom: 14px;
+  }
+
+  /* Review Form */
+  .review-form-card {
+    padding: 24px 18px;
+    margin-top: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    padding: 12px 14px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    border-radius: var(--radius-sm);
+  }
+
+  .star-rating-select {
+    font-size: 1.8rem;
+    gap: 10px;
+  }
+
+  /* Exit Intent Popup */
+  .exit-modal-card {
+    padding: 28px 20px;
+    max-width: 92%;
+    border-radius: var(--radius-md);
+  }
+
+  .exit-modal-icon {
+    font-size: 2.5rem;
+  }
+
+  .exit-modal-title {
+    font-size: 1.3rem;
+  }
+
+  .exit-modal-desc {
+    font-size: 0.88rem;
+  }
+
+  /* Location */
+  .location-wrapper {
+    gap: 20px;
+  }
+
+  .map-container {
+    height: 280px;
+  }
+
+  .location-info-card {
+    padding: 24px 18px;
+  }
+
+  .info-item {
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .info-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .info-text-title {
+    font-size: 0.95rem;
+  }
+
+  .info-text-detail {
+    font-size: 0.82rem;
+  }
+
+  /* Contact */
+  .contact-wrapper {
+    gap: 20px;
+  }
+
+  /* Buttons - Touch-friendly */
+  .btn {
+    padding: 12px 22px;
+    font-size: 0.95rem;
+    min-height: 44px; /* iOS minimum tap target */
+  }
+
+  /* WhatsApp Float */
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 54px;
+    height: 54px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 48px 0 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .footer-col-title {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+  }
+
+  .footer-links a {
+    font-size: 0.85rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    font-size: 0.78rem;
+  }
+}
+
+/* --- Small Mobile (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .container {
+    width: 94%;
+  }
+
+  .section-padding {
+    padding: 40px 0;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.72rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 36px 0 44px;
+  }
+
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.88rem;
+  }
+
+  /* Highlights — single column on tiny screens */
+  .highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .highlight-card {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 16px;
+    padding: 18px 16px;
+  }
+
+  .highlight-icon {
+    margin: 0;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+  }
+
+  .highlight-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Menu cards — single column */
+  .menu-categories-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .menu-card-img-wrap {
+    height: 180px;
+  }
+
+  .menu-card-body {
+    padding: 16px;
+  }
+
+  .menu-card-title {
+    font-size: 1.15rem;
+  }
+
+  .menu-card-desc {
+    font-size: 0.82rem;
+  }
+
+  /* Gallery — single column */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .gallery-item {
+    height: 200px;
+  }
+
+  /* Modal — full screen on small phones */
+  .modal-content {
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    max-height: 92vh;
+    padding: 18px 14px 24px;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .menu-item-name {
+    font-size: 0.85rem;
+  }
+
+  .menu-item-price {
+    font-size: 0.95rem;
+  }
+
+  /* Location */
+  .map-container {
+    height: 220px;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* WhatsApp */
+  .whatsapp-float {
+    bottom: 16px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* --- Safe Area for Notched Phones (iPhone X+, etc.) --- */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .footer {
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .whatsapp-float {
+    bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .modal-content {
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+}
+
+/* --- Disable hover effects on touch devices --- */
+@media (hover: none) and (pointer: coarse) {
+  .menu-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .highlight-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .gallery-item:hover img {
+    transform: none;
+  }
+
+  .gallery-item .gallery-hover-overlay {
+    display: none;
+  }
+
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none;
+  }
+
+  /* Add active state feedback instead */
+  .menu-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  .highlight-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+  }
+
+  .gallery-item:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* --- Landscape Mobile --- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 30px 0;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .modal-content {
+    max-height: 95vh;
+  }
+}
+
+/* --- Print Styles --- */
+@media print {
+  .header, .whatsapp-float, .exit-modal-backdrop, .modal-backdrop {
+    display: none !important;
+  }
+
+  .hero {
+    min-height: auto;
+    color: #000;
+    background: none;
+  }
+
+  .section-padding {
+    padding: 20px 0;
+  }
+}
