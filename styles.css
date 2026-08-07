@@ -1444,13 +1444,22 @@ html, body {
   }
 
   .trust-item {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #FFFFFF !important;
     gap: 6px;
-    padding: 8px 10px;
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-md);
     justify-content: center;
+    text-align: center;
+  }
+
+  .btn {
+    white-space: normal !important;
     text-align: center;
   }
 
@@ -1569,25 +1578,40 @@ html, body {
     font-size: 16px;
   }
 
-  /* Location Section — Single Column */
+  /* Location Section — Single Column & Fit Fix */
   .location-wrapper {
     grid-template-columns: 1fr !important;
     gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .map-container {
-    height: 250px;
+    height: 240px;
     width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
   }
 
   .location-info-card {
-    padding: 24px 18px;
+    padding: 20px 16px;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .info-item {
     gap: 12px;
     margin-bottom: 16px;
+    word-break: break-word;
+  }
+
+  .info-text-detail {
+    font-size: 0.88rem;
+    word-break: break-word;
   }
 
   .info-icon {
