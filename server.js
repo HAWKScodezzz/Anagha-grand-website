@@ -8,59 +8,64 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'anagha123';
-const DB_FILE = path.join(__dirname, 'reviews.json');
+
+// In serverless environments (like Vercel), writable directory is /tmp
+const DB_FILE = process.env.VERCEL ? '/tmp/reviews.json' : path.join(__dirname, 'reviews.json');
+
+const initialReviews = [
+  {
+    id: 1,
+    name: "Rajesh Kumar",
+    rating: 5,
+    comment: "Best highway pitstop on the Bangalore-Mangalore route! Clean restrooms, piping hot masala dosa, and super fast service. Ample parking for big cars.",
+    user_type: "Bangalore - Mangalore Traveler",
+    status: "approved",
+    created_at: "2026-08-01 12:30:00"
+  },
+  {
+    id: 2,
+    name: "Ananya Hegde",
+    rating: 5,
+    comment: "The Malnad style architecture gives such a serene vibe. We stopped here for family lunch. The South Indian thali was authentic and delicious! Kids loved the open play lawn.",
+    user_type: "Family Trip",
+    status: "approved",
+    created_at: "2026-07-28 14:15:00"
+  },
+  {
+    id: 3,
+    name: "Dr. Vikram Rao",
+    rating: 4,
+    comment: "Very convenient location right near Channarayapatna. Crisp idlis, fresh filter coffee, and quick takeaway box for our trip ahead to Sakleshpur.",
+    user_type: "Regular Commuter",
+    status: "approved",
+    created_at: "2026-07-20 09:45:00"
+  },
+  {
+    id: 4,
+    name: "Priya & Suhas",
+    rating: 5,
+    comment: "100% Pure Veg paradise! We tried the Paneer Butter Masala with Tandoori Roti and finished with Filter Coffee. Spotless hygiene and great hospitality.",
+    user_type: "Weekend Drive",
+    status: "approved",
+    created_at: "2026-07-15 20:10:00"
+  },
+  {
+    id: 5,
+    name: "Suresh Gowda",
+    rating: 5,
+    comment: "Plenty of shade under palm trees for parking. Terracotta roof keeps the inside cool even in peak afternoon. High quality vegetarian food on NH-75.",
+    user_type: "Karnataka Roadtrip",
+    status: "approved",
+    created_at: "2026-07-10 13:00:00"
+  }
+];
 
 // Helper to read reviews
 function getReviews() {
   if (!fs.existsSync(DB_FILE)) {
-    const initialReviews = [
-      {
-        id: 1,
-        name: "Rajesh Kumar",
-        rating: 5,
-        comment: "Best highway pitstop on the Bangalore-Mangalore route! Clean restrooms, piping hot masala dosa, and super fast service. Ample parking for big cars.",
-        user_type: "Bangalore - Mangalore Traveler",
-        status: "approved",
-        created_at: "2026-08-01 12:30:00"
-      },
-      {
-        id: 2,
-        name: "Ananya Hegde",
-        rating: 5,
-        comment: "The Malnad style architecture gives such a serene vibe. We stopped here for family lunch. The South Indian thali was authentic and delicious! Kids loved the open play lawn.",
-        user_type: "Family Trip",
-        status: "approved",
-        created_at: "2026-07-28 14:15:00"
-      },
-      {
-        id: 3,
-        name: "Dr. Vikram Rao",
-        rating: 4,
-        comment: "Very convenient location right near Channarayapatna. Crisp idlis, fresh filter coffee, and quick takeaway box for our trip ahead to Sakleshpur.",
-        user_type: "Regular Commuter",
-        status: "approved",
-        created_at: "2026-07-20 09:45:00"
-      },
-      {
-        id: 4,
-        name: "Priya & Suhas",
-        rating: 5,
-        comment: "100% Pure Veg paradise! We tried the Paneer Butter Masala with Tandoori Roti and finished with Filter Coffee. Spotless hygiene and great hospitality.",
-        user_type: "Weekend Drive",
-        status: "approved",
-        created_at: "2026-07-15 20:10:00"
-      },
-      {
-        id: 5,
-        name: "Suresh Gowda",
-        rating: 5,
-        comment: "Plenty of shade under palm trees for parking. Terracotta roof keeps the inside cool even in peak afternoon. High quality vegetarian food on NH-75.",
-        user_type: "Karnataka Roadtrip",
-        status: "approved",
-        created_at: "2026-07-10 13:00:00"
-      }
-    ];
-    fs.writeFileSync(DB_FILE, JSON.stringify(initialReviews, null, 2));
+    try {
+      fs.writeFileSync(DB_FILE, JSON.stringify(initialReviews, null, 2));
+    } catch (e) {}
     return initialReviews;
   }
 
@@ -68,13 +73,15 @@ function getReviews() {
     const raw = fs.readFileSync(DB_FILE, 'utf8');
     return JSON.parse(raw);
   } catch (err) {
-    return [];
+    return initialReviews;
   }
 }
 
 // Helper to save reviews
 function saveReviews(reviews) {
-  fs.writeFileSync(DB_FILE, JSON.stringify(reviews, null, 2));
+  try {
+    fs.writeFileSync(DB_FILE, JSON.stringify(reviews, null, 2));
+  } catch (e) {}
 }
 
 // Middleware
@@ -249,7 +256,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Anagha Grand Website server running on http://localhost:${PORT}`);
-  console.log(`Admin dashboard available at http://localhost:${PORT}/admin`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Anagha Grand Website server running on http://localhost:${PORT}`);
+    console.log(`Admin dashboard available at http://localhost:${PORT}/admin`);
+  });
+}
+
+module.exports = app;
