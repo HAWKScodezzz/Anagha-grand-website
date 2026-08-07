@@ -73,6 +73,9 @@
       </button>
     </div>
 
+    <!-- Mobile Navigation Backdrop Overlay -->
+    <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-drawer" id="mobileDrawer">
       <ul class="mobile-nav-links">
@@ -84,7 +87,7 @@
         <li><a href="#location">Location</a></li>
         <li><a href="#contact">Contact</a></li>
         <li style="margin-top: 10px;">
-          <a href="#menu" class="btn btn-primary" style="color:#FFF;">View Menu</a>
+          <a href="#menu" class="btn btn-primary" style="color:#FFF; width:100%;">View Menu</a>
         </li>
       </ul>
     </div>
@@ -218,6 +221,19 @@
         <span class="section-subtitle">Freshly Prepared</span>
         <h2 class="section-title">What's Cooking Today</h2>
         <p style="color: var(--color-text-muted); margin-top: 8px;">Tap any category to view full items, authentic names & prices</p>
+      </div>
+
+      <!-- Quick Category Filter Bar (Essential for Mobile & Desktop Alignment) -->
+      <div class="menu-filter-bar reveal">
+        <button class="filter-pill active" data-filter="all">All Items</button>
+        <button class="filter-pill" data-filter="breakfast">South Indian Breakfast</button>
+        <button class="filter-pill" data-filter="dosa">Dosa Varieties</button>
+        <button class="filter-pill" data-filter="meals">Meals & Thali</button>
+        <button class="filter-pill" data-filter="chinese_starters">Chinese Starters</button>
+        <button class="filter-pill" data-filter="soups">Soups</button>
+        <button class="filter-pill" data-filter="tandoori">Tandoori</button>
+        <button class="filter-pill" data-filter="beverages">Beverages</button>
+        <button class="filter-pill" data-filter="ice_cream">Milkshakes & Desserts</button>
       </div>
 
       <div class="menu-categories-grid">

@@ -136,30 +136,70 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* --------------------------------------------------------------------------
-     2. Mobile Hamburger Menu Toggle
+     Helper: Toggle Body Scroll Lock
+     -------------------------------------------------------------------------- */
+  function toggleBodyScroll(lock) {
+    if (lock) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Check if any modal or drawer is still open
+      const hasActiveModal = document.querySelector('.modal-backdrop.active, .mobile-drawer.active, .exit-modal-backdrop.active');
+      if (!hasActiveModal) {
+        document.body.style.overflow = '';
+      }
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     2. Mobile Hamburger Menu Toggle & Overlay Backdrop
      -------------------------------------------------------------------------- */
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const mobileDrawer = document.getElementById('mobileDrawer');
+  const mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
   
+  function closeMobileDrawer() {
+    if (mobileDrawer) mobileDrawer.classList.remove('active');
+    if (hamburgerBtn) hamburgerBtn.classList.remove('active');
+    if (mobileDrawerOverlay) mobileDrawerOverlay.classList.remove('active');
+    toggleBodyScroll(false);
+  }
+
+  function openMobileDrawer() {
+    if (mobileDrawer) mobileDrawer.classList.add('active');
+    if (hamburgerBtn) hamburgerBtn.classList.add('active');
+    if (mobileDrawerOverlay) mobileDrawerOverlay.classList.add('active');
+    toggleBodyScroll(true);
+  }
+
   if (hamburgerBtn && mobileDrawer) {
     hamburgerBtn.addEventListener('click', () => {
-      mobileDrawer.classList.toggle('active');
+      const isOpen = mobileDrawer.classList.contains('active');
+      if (isOpen) {
+        closeMobileDrawer();
+      } else {
+        openMobileDrawer();
+      }
     });
+
+    if (mobileDrawerOverlay) {
+      mobileDrawerOverlay.addEventListener('click', closeMobileDrawer);
+    }
 
     document.querySelectorAll('.mobile-nav-links a').forEach(link => {
       link.addEventListener('click', () => {
-        mobileDrawer.classList.remove('active');
+        closeMobileDrawer();
       });
     });
   }
 
   /* --------------------------------------------------------------------------
-     3. Active Nav Link Highlighting on Scroll
+     3. Active Nav Link Highlighting on Scroll (Throttled via requestAnimationFrame)
      -------------------------------------------------------------------------- */
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+  let isScrolling = false;
 
-  window.addEventListener('scroll', () => {
+  function updateActiveNav() {
     let current = '';
     const scrollPosition = window.scrollY + 140;
 
@@ -178,10 +218,46 @@ document.addEventListener('DOMContentLoaded', () => {
         link.classList.add('active');
       }
     });
-  });
+
+    isScrolling = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(updateActiveNav);
+      isScrolling = true;
+    }
+  }, { passive: true });
 
   /* --------------------------------------------------------------------------
-     4. Menu Category Modal Handling (Delegate to Document for reliability)
+     4. Category Quick Filter Bar Handler (Mobile & Desktop Alignment)
+     -------------------------------------------------------------------------- */
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const menuCards = document.querySelectorAll('.menu-card');
+
+  if (filterPills.length > 0 && menuCards.length > 0) {
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const filterVal = pill.dataset.filter;
+
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        menuCards.forEach(card => {
+          const cardCat = card.dataset.category;
+          if (filterVal === 'all' || cardCat === filterVal) {
+            card.style.display = 'block';
+            card.classList.add('active');
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     5. Menu Category Modal Handling (With Body Scroll Lock)
      -------------------------------------------------------------------------- */
   const menuModal = document.getElementById('menuModal');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
@@ -206,6 +282,14 @@ document.addEventListener('DOMContentLoaded', () => {
       `).join('');
 
       menuModal.classList.add('active');
+      toggleBodyScroll(true);
+    }
+  }
+
+  function closeMenuModal() {
+    if (menuModal) {
+      menuModal.classList.remove('active');
+      toggleBodyScroll(false);
     }
   }
 
@@ -218,23 +302,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (modalCloseBtn && menuModal) {
-    modalCloseBtn.addEventListener('click', () => {
-      menuModal.classList.remove('active');
-    });
+    modalCloseBtn.addEventListener('click', closeMenuModal);
 
     menuModal.addEventListener('click', (e) => {
       if (e.target === menuModal) {
-        menuModal.classList.remove('active');
+        closeMenuModal();
       }
     });
   }
 
   /* --------------------------------------------------------------------------
-     5. Gallery Lightbox Zoom
+     6. Gallery Lightbox Zoom (With Body Scroll Lock)
      -------------------------------------------------------------------------- */
   const lightboxModal = document.getElementById('lightboxModal');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+
+  function closeLightboxModal() {
+    if (lightboxModal) {
+      lightboxModal.classList.remove('active');
+      toggleBodyScroll(false);
+    }
+  }
 
   document.addEventListener('click', (e) => {
     const galleryItem = e.target.closest('.gallery-item');
@@ -243,18 +332,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (img && lightboxModal && lightboxImg) {
         lightboxImg.src = img.src;
         lightboxModal.classList.add('active');
+        toggleBodyScroll(true);
       }
     }
   });
 
   if (lightboxCloseBtn && lightboxModal) {
-    lightboxCloseBtn.addEventListener('click', () => {
-      lightboxModal.classList.remove('active');
-    });
+    lightboxCloseBtn.addEventListener('click', closeLightboxModal);
 
     lightboxModal.addEventListener('click', (e) => {
       if (e.target === lightboxModal) {
-        lightboxModal.classList.remove('active');
+        closeLightboxModal();
       }
     });
   }
