@@ -1,10 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
 /* ==========================================================================
    ANAGHA GRAND - PURE VEG RESTAURANT
    Design System & Master Stylesheet
    ========================================================================== */
-
-/* --- Google Fonts Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* --- Root Color Palette & Variables --- */
 :root {
@@ -149,7 +148,7 @@ button, input, select, textarea {
 
 .btn-primary {
   background-color: var(--color-terracotta);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   box-shadow: 0 4px 14px rgba(192, 57, 43, 0.3);
 }
 
@@ -161,7 +160,7 @@ button, input, select, textarea {
 
 .btn-secondary {
   background-color: var(--color-orange);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   box-shadow: 0 4px 14px rgba(230, 126, 34, 0.3);
 }
 
@@ -174,24 +173,24 @@ button, input, select, textarea {
 .btn-outline {
   background-color: transparent;
   border-color: #FFFFFF;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 .btn-outline:hover {
   background-color: #FFFFFF;
-  color: var(--color-near-black);
+  color: var(--color-near-black) !important;
   transform: translateY(-2px);
 }
 
 .btn-outline-dark {
   background-color: transparent;
   border-color: var(--color-terracotta);
-  color: var(--color-terracotta);
+  color: var(--color-terracotta) !important;
 }
 
 .btn-outline-dark:hover {
   background-color: var(--color-terracotta);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 /* --- Navigation Bar --- */
@@ -201,7 +200,7 @@ button, input, select, textarea {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(251, 247, 240, 0.95);
+  background-color: rgba(251, 247, 240, 0.98);
   backdrop-filter: blur(10px);
   border-bottom: 3px solid var(--color-terracotta);
   transition: all var(--transition-normal);
@@ -591,15 +590,6 @@ button, input, select, textarea {
   color: var(--color-terracotta);
   font-weight: 600;
   font-size: 0.9rem;
-}
-
-.pdf-download-strip {
-  text-align: center;
-  margin-top: 40px;
-  padding: 24px;
-  background-color: var(--color-light-bg);
-  border-radius: var(--radius-md);
-  border: 1px dashed var(--color-terracotta);
 }
 
 /* --- Menu Modal --- */
@@ -1022,7 +1012,7 @@ button, input, select, textarea {
   width: 60px;
   height: 60px;
   background-color: var(--color-whatsapp);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1114,12 +1104,6 @@ button, input, select, textarea {
 
 /* --- Scroll Reveal Helpers --- */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
-}
-
-.reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
